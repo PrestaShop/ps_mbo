@@ -126,6 +126,7 @@ class ps_mbo extends Module
     const HOOKS = [
         'actionAdminControllerSetMedia',
         'displayDashboardTop',
+        'displayBackOfficeEmployeeMenu',
     ];
 
     /**
@@ -363,6 +364,100 @@ class ps_mbo extends Module
         ]);
 
         return $this->fetch('module:ps_mbo/views/templates/hook/recommended-modules.tpl');
+    }
+
+    /**
+     * Hook displayBackOfficeMenu.
+     * Returns menu in BackOffice
+     *
+     * @return array<int, array<string, string>>
+     */
+    public function hookDisplayBackOfficeEmployeeMenu()
+    {
+        $menus = [
+            [
+                'link' => $this->trans(
+                    'https://www.prestashop.com/en/resources/documentations?utm_source=back-office&utm_medium=profile&utm_campaign=resources-en&utm_content=download17',
+                    [],
+                    'Admin.Navigation.Header'
+                ),
+                'icon' => 'book',
+                'title' => $this->trans(
+                    'Resources',
+                    [],
+                    'Admin.Navigation.Header'
+                ),
+            ],
+            [
+                'link' => $this->trans(
+                    'https://www.prestashop.com/en/training?utm_source=back-office&utm_medium=profile&utm_campaign=training-en&utm_content=download17',
+                    [],
+                    'Admin.Navigation.Header'
+                ),
+                'icon' => 'school',
+                'title' => $this->trans(
+                    'Training',
+                    [],
+                    'Admin.Navigation.Header'
+                ),
+            ],
+            [
+                'link' => $this->trans(
+                    'https://www.prestashop.com/en/experts?utm_source=back-office&utm_medium=profile&utm_campaign=expert-en&utm_content=download17',
+                    [],
+                    'Admin.Navigation.Header'
+                ),
+                'icon' => 'person_pin_circle',
+                'title' => $this->trans(
+                    'Find an Expert',
+                    [],
+                    'Admin.Navigation.Header'
+                ),
+            ],
+            [
+                'link' => $this->trans(
+                    'https://addons.prestashop.com?utm_source=back-office&utm_medium=profile&utm_campaign=addons-en&utm_content=download17',
+                    [],
+                    'Admin.Navigation.Header'
+                ),
+                'icon' => 'extension',
+                'title' => $this->trans(
+                    'PrestaShop Marketplace',
+                    [],
+                    'Admin.Navigation.Header'
+                ),
+            ],
+            [
+                'link' => $this->trans(
+                    'https://www.prestashop.com/en/contact?utm_source=back-office&utm_medium=profile&utm_campaign=help-center-en&utm_content=download17',
+                    [],
+                    'Admin.Navigation.Header'
+                ),
+                'icon' => 'help',
+                'title' => $this->trans(
+                    'Help Center',
+                    [],
+                    'Admin.Navigation.Header'
+                ),
+            ],
+        ];
+        if (defined('_PS_HOST_MODE_')) {
+            $menus[] = [
+                'link' => $this->trans(
+                    'https://www.prestashop.com/cloud/',
+                    [],
+                    'Admin.Navigation.Header'
+                ),
+                'icon' => 'settings_applications',
+                'title' => $this->trans(
+                    'My PrestaShop account',
+                    [],
+                    'Admin.Navigation.Header'
+                ),
+            ];
+        }
+
+        return $menus:
     }
 
     /**
